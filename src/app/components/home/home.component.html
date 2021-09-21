@@ -1,46 +1,13 @@
 <div class="jumbotron bg-white text-center">
   <h1 class="display-4">Covid Tracker</h1>
   <hr>
-  <div class="row">
-    <div class="card col p-3 m-3">
-      <div class="ui statistic">
-        <div class="label">
-          Confirmed
-        </div>
-        <div class="value">
-          {{totalConfirmedCases}}
-        </div>
-      </div>
-    </div>
-    <div class="card col p-3 m-3">
-      <div class="ui statistic">
-        <div class="label">
-          Recovered
-        </div>
-        <div class="value">
-          {{totalRecoveredCases}}
-        </div>
-      </div>
-    </div>
-    <div class="card col p-3 m-3">
-      <div class="ui statistic">
-        <div class="label">
-          Death
-        </div>
-        <div class="value">
-          {{totalDeaths}}
-        </div>
-      </div>
-    </div>
-    <div class="card col p-3 m-3">
-      <div class="ui statistic">
-        <div class="label">
-          Active
-        </div>
-        <div class="value">
-          {{totalActiveCases}}
-        </div>
-      </div>
-    </div>
-  </div>
+  <app-dashboard-card
+    [confirmedCases]="totalConfirmedCases"
+    [deaths]="totalDeaths"
+    [activeCases]="totalActiveCases"
+    [recoveredCases]="totalRecoveredCases"
+  ></app-dashboard-card>
 </div>
+
+<google-chart [data]="pieChart"></google-chart>
+<google-chart [data]="columnChart"></google-chart>
