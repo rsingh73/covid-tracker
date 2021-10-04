@@ -1,6 +1,10 @@
+<div class="ui inverted dimmer" [class.active]="loading">
+  <div class="ui text loader">Loading</div>
+</div>
+
 <div class="jumbotron bg-white text-center">
   <h1 class="display-4">Covid Tracker</h1>
-  <hr>
+  <hr />
   <app-dashboard-card
     [confirmedCases]="totalConfirmedCases"
     [deaths]="totalDeaths"
@@ -8,6 +12,41 @@
     [recoveredCases]="totalRecoveredCases"
   ></app-dashboard-card>
 </div>
+<hr />
 
-<google-chart [data]="pieChart"></google-chart>
-<google-chart [data]="columnChart"></google-chart>
+<!-- --- -->
+
+<div class="radio-center">
+  <div class="ui form">
+    <div class="inline fields">
+      <label for="fruit">Select Case Type:</label>
+      <div *ngFor="let btn of radioButtons">
+        <div class="field">
+          <div class="ui radio checkbox">
+            <input
+              type="radio"
+              [value]="btn.value"
+              (click)="updateChart(btn.value)"
+              [id]="btn.id"
+              name="caseType"
+              checked=""
+              tabindex="0"
+              class="hidden"
+            />
+            <label [for]="btn.id">{{ btn.label }}</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ----- -->
+<div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-6">
+    <google-chart [data]="pieChart" *ngIf="globalData"></google-chart>
+  </div>
+  <div class="col-xs-12 col-sm-12 col-md-6">
+    <google-chart [data]="columnChart" *ngIf="globalData"></google-chart>
+  </div>
+</div>
